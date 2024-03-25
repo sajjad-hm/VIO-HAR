@@ -118,13 +118,14 @@ In our case github cloning for the vinsmono was not working for the network issu
 cd catkin_ws
 catkin_make
 ```
+You should test the vins-mono by running [EuRoC MAV Dataset](https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) by following the vins-mono documentation. 
+
 Now we need to set up our environment for creating the bag file and making the configuration file for the Android device. 
 
-## **Step 5: Installing VIO-Commons For creating the bag file.**
-Here’s the official documentation for the VIO-Commons:[Click Here](https://github.com/JzHuai0108/vio_common) First install all the dependencies according to the documentation. We used ROS installation method as we have already installed ros in our system.
 
-## **Step 6: Prepare config.yaml file**
+## **Step 5: Prepare config.yaml file**
 Navigate to this folder: `/home/your-name/catkin_ws/src/VINS-Mono/config`
+_(Your path can be different compare to mine **your-name** refers to your system name)_
 Create a new folder you can name the folder anything, in my case I used android. Now navigate to the `/home/your-name/catkin_ws/src/VINS-Mono/config/android` folder and create a new file which extension in `.yaml` in my case I named it `poco.yaml`
 Open `poco.yaml` and paste this code initially but remember this parameters values are for poco f1. In any differnt device you might need to change some of the perameters. 
 ```
@@ -217,15 +218,13 @@ visualize_imu_forward: 0        # output imu forward propogation to achieve low 
 visualize_camera_size: 0.4      # size of camera marker in RVIZ
 
 ```
-Here's also the config file for your convinient poco.yaml
+Here's also the config file for your convinient [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml)
 
-## **Step 7: Creating a new roslaunch vins_estimator android.launch configuration**
+## **Step 6: Creating a new roslaunch vins_estimator android.launch configuration**
+Now, we need to link the new configuration file_poco.yaml_ for launching the vins-mono. For this, first navigate to this path:
+`/home/your-name/catkin_ws/src/VINS-Mono/vins_estimator/launch`
 
-First navigate to this path:
-```
-/home/your-path/catkin_ws/src/VINS-Mono/vins_estimator/launch
-```
-_Your path can be different compare to mine **your-path** refers to your system name_
+_Your path can be different compare to mine **your-name** refers to your system name_
 
 In this folder create a new file like this: 
 ```
@@ -234,6 +233,8 @@ android.launch
 _you can use any name but the extension should be .launch in my case I used android.launch_
 
 **Now, paste this code on that file:**
+NB: make sure you use the correct folder path for this line ` <arg name="config_path" default = "$(find feature_tracker)/../config/android/pocof1.yaml" />`
+**In my case my folder path is `/config/android/pocof1.yaml`**
 ```
 <launch>
     <arg name="config_path" default = "$(find feature_tracker)/../config/android/pocof1.yaml" />
@@ -255,3 +256,39 @@ _you can use any name but the extension should be .launch in my case I used andr
     </node>
 </launch>
 ```
+## **Step 7: Installing VIO-Commons For creating the bag file.**
+Here’s the official documentation for the VIO-Commons:[Click Here](https://github.com/JzHuai0108/vio_common) First install all the dependencies according to the documentation. We used ROS installation method as we have already installed ros in our system.
+
+## **Step 8: Calculate the time difference between camera sensor and IMU sensor**
+We need to tell the config.yaml file about the time difference between camera and IMU sensor. After collecting data from _MARS LOGGER_ there's four different files in the folder 
+* edge_epochs.txt
+* frame_timestamps.txt
+* gyro_accel.csv
+* movie.mp4
+* movie_metadata.csv
+
+  **We calculated the time difference between frame_timestamps.txt and gyro_accel.csv**
+
+IMU and camera clock trigger differently. Though MARS Logger try to trigger both of the clock in the same time but still there's some td(time difference). Here you will get timestamps in ns but in the configuration file [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) we need to provide the td value in ms.
+
+## **Step 9: Installing VIO-Commons For creating the bag file.**
+**Running our bag file into the vins-mono**
+Here's some of the similar terminal command for running your own dataset bag file into the vins-mono. Open three terminal. 
+* In the first terminal 
+```
+roslaunch vins_estimator android.launch
+```
+* In the second terminal 
+```
+roslaunch vins_estimator vins_rviz.launch
+```
+* In the third terminal 
+```
+rosbag play /your/bag/file/path/movie.bag
+```
+NB: Make sure you have provided the proper output path in the [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) configuration file. 
+After running successfully you will get three new output file 
+* edge_epochs.txt
+* vins_result_no_loop.csv
+* vins_result_loop.csv
+Where you will find timestamp, trajectory XYZ value also, rotation XYZ and a scealer vector.
