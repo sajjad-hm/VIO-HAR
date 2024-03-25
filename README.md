@@ -257,7 +257,7 @@ NB: make sure you use the correct folder path for this line ` <arg name="config_
 </launch>
 ```
 ## **Step 7: Installing VIO-Commons For creating the bag file.**
-Here’s the official documentation for the VIO-Commons:[Click Here](https://github.com/JzHuai0108/vio_common) First install all the dependencies according to the documentation. We used ROS installation method as we have already installed ros in our system.
+Here’s the official documentation for the VIO-Commons: [Click Here](https://github.com/JzHuai0108/vio_common) First install all the dependencies according to the documentation. We used ROS installation method as we have already installed ros in our system.
 
 ## **Step 8: Calculate the time difference between camera sensor and IMU sensor**
 We need to tell the config.yaml file about the time difference between camera and IMU sensor. After collecting data from _MARS LOGGER_ there's four different files in the folder 
@@ -288,7 +288,9 @@ rosbag play /your/bag/file/path/movie.bag
 ```
 NB: Make sure you have provided the proper output path in the [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) configuration file. 
 After running successfully you will get three new output file 
-* edge_epochs.txt
-* vins_result_no_loop.csv
-* vins_result_loop.csv
+
+* `edge_epochs.txt`
+* `vins_result_no_loop.csv`
+* `vins_result_loop.csv`
+
 Where you will find timestamp, trajectory XYZ value also, rotation XYZ and a scealer vector.
