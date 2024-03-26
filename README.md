@@ -127,7 +127,7 @@ Now we need to set up our environment for creating the bag file and making the c
 Navigate to this folder: `/home/your-name/catkin_ws/src/VINS-Mono/config`
 _(Your path can be different compare to mine **your-name** refers to your system name)_
 Create a new folder you can name the folder anything, in my case I used android. Now navigate to the `/home/your-name/catkin_ws/src/VINS-Mono/config/android` folder and create a new file which extension in `.yaml` in my case I named it `poco.yaml`
-Open `poco.yaml` and paste this code initially but remember this parameters values are for poco f1. In any differnt device you might need to change some of the perameters. 
+Open `poco.yaml` and paste this code initially but remember this parameters values are for poco f1. If you use any different device you might need to change some of the perameters. 
 ```
 %YAML:1.0
 #common parameters
