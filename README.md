@@ -293,4 +293,4 @@ After running successfully you will get three new output file
 * `vins_result_no_loop.csv`
 * `vins_result_loop.csv`
 
-Where you will find timestamp, trajectory XYZ value also, rotation XYZ and a scealer vector.
+Where you will find timestamp, trajectory XYZ value also, rotation XYZ and a scealer value.
