@@ -271,7 +271,7 @@ We need to tell the config.yaml file about the time difference between camera an
 
 IMU and camera clock trigger differently. Though MARS Logger try to trigger both of the clock in the same time but still there's some td(time difference). Here you will get timestamps in ns but in the configuration file [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) we need to provide the td value in ms.
 
-## **Step 9: Installing VIO-Commons For creating the bag file.**
+## **Step 9: Running ROS BAG file into VINS-MONO**
 **Running our bag file into the vins-mono**
 Here's some of the similar terminal command for running your own dataset bag file into the vins-mono. Open three terminal. 
 * In the first terminal 
