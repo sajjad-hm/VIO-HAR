@@ -17,6 +17,7 @@ To acquire the raw data we used the [**MARS LOGGER**](https://github.com/OSUPCVL
 ## **Step 1: MARS LOGGER**
 
 Install MARS Logger android app: [**MARS LOGGER**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/releases/download/v1.0-android/app-fdroid-release.apk)
+MARS Logger Wiki Page: [**MARS LOGGER WIKI**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/wiki)
 
 ## **Step 2: Install Ubuntu**
 
