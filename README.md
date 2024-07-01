@@ -220,7 +220,7 @@ visualize_imu_forward: 0        # output imu forward propogation to achieve low 
 visualize_camera_size: 0.4      # size of camera marker in RVIZ
 
 ```
-Here's also the config file for your convinient [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/pocof1.yaml)
+Here's also the config file for your convinient [pocof1.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/pocof1.yaml)
 
 ## **Step 6: Creating a new roslaunch vins_estimator android.launch configuration**
 Now, we need to link the new configuration file_poco.yaml_ for launching the vins-mono. For this, first navigate to this path:
@@ -299,7 +299,7 @@ We need to tell the config.yaml file about the time difference between camera an
 
   **We calculated the time difference between frame_timestamps.txt and gyro_accel.csv**
 
-IMU and camera clock trigger differently. Though MARS Logger try to trigger both of the clock in the same time but still there's some td(time difference). Here you will get timestamps in ns but in the configuration file [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) we need to provide the td value in ms.
+IMU and camera clock trigger differently. Though MARS Logger try to trigger both of the clock in the same time but still there's some td(time difference). Here you will get timestamps in ns but in the configuration file [pocof1.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/pocof1.yaml) we need to provide the td value in ms.
 
 
 
@@ -318,7 +318,7 @@ roslaunch vins_estimator vins_rviz.launch
 ```
 rosbag play /your/bag/file/path/movie.bag
 ```
-NB: Make sure you have provided the proper output path in the [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) configuration file. 
+NB: Make sure you have provided the proper output path in the [pocof1.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/pocof1.yaml) configuration file. 
 After running successfully you will get three new output file 
 
 * `edge_epochs.txt`
