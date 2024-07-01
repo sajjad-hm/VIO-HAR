@@ -261,7 +261,7 @@ NB: make sure you use the correct folder path for this line ` <arg name="config_
 ## **Step 7: Installing VIO-Commons For creating the bag file.**
 Here’s the official documentation for the VIO-Commons: [Click Here](https://github.com/JzHuai0108/vio_common) 
 Follow these steps for installing VIO-Commons:
-*Install the dependencies
+* Install the dependencies
 ```
 sudo apt-get install libopencv-dev libeigen3-dev
 ```
@@ -270,13 +270,26 @@ sudo apt-get install libopencv-dev libeigen3-dev
 cd catkin_ws/src
 git clone https://github.com/JzHuai0108/vio_common.git vio_common
 ```
-*Now Catkin build the repositories
+* Now Catkin build the repositories
 ```
 cd catkin_ws
 catkin_make
 ```
 
-## **Step 8: Calculate the time difference between camera sensor and IMU sensor**
+## **Step 8: Convert to Rosbag**
+
+* Find the path under catkin_ws/src/vio_common/python/kalibr_bagcreater.py and make sure this is the right path to put under BAG_PYTHON
+ANDROID_DATA_DIR= Your android data directory which needs to copy from the android phone to PC, please check the [**MARS LOGGER WIKI**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/wiki) page for more information
+```
+BAG_PYTHON=catkin_ws/src/vio_common/python/kalibr_bagcreater.py
+ANDROID_DATA_DIR=/path/to/android/data/session
+python $BAG_PYTHON --video $ANDROID_DATA_DIR/movie.mp4 \
+--imu $ANDROID_DATA_DIR/gyro_accel.csv \
+--video_time_file $ANDROID_DATA_DIR/frame_timestamps.txt \
+--output_bag $ANDROID_DATA_DIR/movie.bag
+```
+
+## **Step 9: Calculate the time difference between camera sensor and IMU sensor**
 We need to tell the config.yaml file about the time difference between camera and IMU sensor. After collecting data from _MARS LOGGER_ there's four different files in the folder 
 * edge_epochs.txt
 * frame_timestamps.txt
@@ -288,7 +301,9 @@ We need to tell the config.yaml file about the time difference between camera an
 
 IMU and camera clock trigger differently. Though MARS Logger try to trigger both of the clock in the same time but still there's some td(time difference). Here you will get timestamps in ns but in the configuration file [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml) we need to provide the td value in ms.
 
-## **Step 9: Running ROS BAG file into VINS-MONO**
+
+
+## **Step 10: Running ROS BAG file into VINS-MONO**
 **Running our bag file into the vins-mono**
 Here's some of the similar terminal command for running your own dataset bag file into the vins-mono. Open three terminal. 
 * In the first terminal 
