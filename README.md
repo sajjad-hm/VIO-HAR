@@ -220,7 +220,7 @@ visualize_imu_forward: 0        # output imu forward propogation to achieve low 
 visualize_camera_size: 0.4      # size of camera marker in RVIZ
 
 ```
-Here's also the config file for your convinient [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/poco.yaml)
+Here's also the config file for your convinient [poco.yaml](https://github.com/sajjad-hm/VIO-HAR/blob/main/pocof1.yaml)
 
 ## **Step 6: Creating a new roslaunch vins_estimator android.launch configuration**
 Now, we need to link the new configuration file_poco.yaml_ for launching the vins-mono. For this, first navigate to this path:
@@ -279,7 +279,7 @@ catkin_make
 ## **Step 8: Convert to Rosbag**
 
 * Find the path under catkin_ws/src/vio_common/python/kalibr_bagcreater.py and make sure this is the right path to put under BAG_PYTHON
-ANDROID_DATA_DIR= Your android data directory which needs to copy from the android phone to PC, please check the [**MARS LOGGER WIKI**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/wiki) page for more information
+* ANDROID_DATA_DIR= Your Android data directory needs to be copied from the Android phone to the PC, please check the [**MARS LOGGER WIKI**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/wiki) page for more information
 ```
 BAG_PYTHON=catkin_ws/src/vio_common/python/kalibr_bagcreater.py
 ANDROID_DATA_DIR=/path/to/android/data/session
