@@ -18,7 +18,7 @@ To acquire the raw data we used the [**MARS LOGGER**](https://github.com/OSUPCVL
 
 Install MARS Logger android app: [**MARS LOGGER**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/releases/download/v1.0-android/app-fdroid-release.apk)
 
-|| MARS Logger Wiki Page: [**MARS LOGGER WIKI**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/wiki)
+MARS Logger Wiki Page: [**MARS LOGGER WIKI**](https://github.com/OSUPCVLab/mobile-ar-sensor-logger/wiki)
 
 ## **Step 2: Install Ubuntu**
 
@@ -61,13 +61,13 @@ rosrun turtlesim turtle_teleop_key
 ```
 source ~/catkin_ws/devel/setup.bash
 ```
-If you follow that video tutorial step by step you’ll be able to install ros melodic successfully
+If you follow that video tutorial step by step you’ll be able to install ros Melodic successfully
 
 ## **Step 4: Installing Vins Mono**
 
-Follow this link [Click Here](https://github.com/HKUST-Aerial-Robotics/VINS-Mono) for the vins-mono GitHub page where all theinstructions is available but for the simplicity you can follow this command which will make the process easier. I recommend to read through all the documentation on the vins-mono github page.
+Follow this link [Click Here](https://github.com/HKUST-Aerial-Robotics/VINS-Mono) for the vins-mono GitHub page where all the instructions are available but for simplicity you can follow this command which will make the process easier. You should read through all the documentation on the vins-mono GitHub page.
 
-* **First install this Dependencies: run this in the terminal window.**
+* **First install these Dependencies: run this in the terminal window.**
 ```
 sudo apt-get install ros-melodic-cv-bridge ros-melodic-tf ros-melodic-message-filters ros-melodic-image-transport
 ```
@@ -78,7 +78,7 @@ Update Package Index:
 ```
 sudo apt-get update
 ```
-Install Dependencies: Ceres Solver has several dependencies that need to be installed first. Run the following command to install them:
+Install Dependencies: Ceres Solver has several dependencies that must be installed first. Run the following command to install them:
 ```
 sudo apt-get install -y cmake \
                      g++ \
@@ -135,7 +135,7 @@ Open `poco.yaml` and paste this code initially but remember this parameters valu
 #common parameters
 imu_topic: "/imu0"
 image_topic: "/cam0/image_raw"
-output_path: "/home/sajjad/Nov_DS/DS2_Head_Mount/M_BF"
+output_path: "/home/your/output/path"
 #camera calibration 
 model_type: PINHOLE
 camera_name: camera
@@ -259,7 +259,22 @@ NB: make sure you use the correct folder path for this line ` <arg name="config_
 </launch>
 ```
 ## **Step 7: Installing VIO-Commons For creating the bag file.**
-Here’s the official documentation for the VIO-Commons: [Click Here](https://github.com/JzHuai0108/vio_common) First install all the dependencies according to the documentation. We used ROS installation method as we have already installed ros in our system.
+Here’s the official documentation for the VIO-Commons: [Click Here](https://github.com/JzHuai0108/vio_common) 
+Follow these steps for installing VIO-Commons:
+*Install the dependencies
+```
+sudo apt-get install libopencv-dev libeigen3-dev
+```
+* Clone the repositories under catkin_ws/src folder
+```
+cd catkin_ws/src
+git clone https://github.com/JzHuai0108/vio_common.git vio_common
+```
+*Now Catkin build the repositories
+```
+cd catkin_ws
+catkin_make
+```
 
 ## **Step 8: Calculate the time difference between camera sensor and IMU sensor**
 We need to tell the config.yaml file about the time difference between camera and IMU sensor. After collecting data from _MARS LOGGER_ there's four different files in the folder 
