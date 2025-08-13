@@ -268,7 +268,7 @@ sudo apt-get install libopencv-dev libeigen3-dev
 * Clone the repositories under catkin_ws/src folder
 ```
 cd catkin_ws/src
-git clone https://github.com/JzHuai0108/vio_common.git vio_common
+git clone https://github.com/sajjadxhm/vio_common.git vio_common
 ```
 * Now Catkin build the repositories
 ```
